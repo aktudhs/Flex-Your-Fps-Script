@@ -1,0 +1,113 @@
+local ScreenGui = Instance.new("ScreenGui")
+local DraggingFrame = Instance.new("Frame")
+local MainFrame = Instance.new("Frame")
+local MAinLabel = Instance.new("TextLabel")
+local Fpsvalue = Instance.new("TextBox")
+local FPSsettable = Instance.new("TextLabel")
+local InjectFirst = Instance.new("TextButton")
+
+--Properties:
+
+ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+DraggingFrame.Name = "DraggingFrame"
+DraggingFrame.Parent = ScreenGui
+DraggingFrame.BackgroundColor3 = Color3.fromRGB(124, 138, 109)
+DraggingFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
+DraggingFrame.BorderSizePixel = 0
+DraggingFrame.Position = UDim2.new(0.0103550358, 0, 0.260975599, 0)
+DraggingFrame.Size = UDim2.new(0, 161, 0, 209)
+
+MainFrame.Name = "MainFrame"
+MainFrame.Parent = DraggingFrame
+MainFrame.BackgroundColor3 = Color3.fromRGB(155, 172, 136)
+MainFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
+MainFrame.BorderSizePixel = 0
+MainFrame.Position = UDim2.new(0.0473919623, 0, 0.0325805284, 0)
+MainFrame.Size = UDim2.new(0, 145, 0, 183)
+
+MAinLabel.Name = "MAin Label"
+MAinLabel.Parent = MainFrame
+MAinLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+MAinLabel.BackgroundTransparency = 1.000
+MAinLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
+MAinLabel.BorderSizePixel = 0
+MAinLabel.Size = UDim2.new(0, 145, 0, 37)
+MAinLabel.Font = Enum.Font.Unknown
+MAinLabel.Text = "Flex Your FPS Gui"
+MAinLabel.TextColor3 = Color3.fromRGB(208, 208, 208)
+MAinLabel.TextSize = 14.000
+MAinLabel.TextStrokeTransparency = 0.000
+
+Fpsvalue.Name = "Fpsvalue"
+Fpsvalue.Parent = MainFrame
+Fpsvalue.BackgroundColor3 = Color3.fromRGB(165, 162, 116)
+Fpsvalue.BorderColor3 = Color3.fromRGB(108, 107, 87)
+Fpsvalue.Position = UDim2.new(0.068965517, 0, 0.476502627, 0)
+Fpsvalue.Size = UDim2.new(0, 125, 0, 27)
+Fpsvalue.ZIndex = 0
+Fpsvalue.Font = Enum.Font.SourceSansBold
+Fpsvalue.Text = "E.G: -69"
+Fpsvalue.TextColor3 = Color3.fromRGB(248, 248, 248)
+Fpsvalue.TextSize = 14.000
+Fpsvalue.TextStrokeTransparency = 0.000
+
+FPSsettable.Name = "FPSsettable"
+FPSsettable.Parent = MainFrame
+FPSsettable.BackgroundColor3 = Color3.fromRGB(130, 139, 101)
+FPSsettable.BackgroundTransparency = 0.500
+FPSsettable.BorderColor3 = Color3.fromRGB(0, 0, 0)
+FPSsettable.BorderSizePixel = 0
+FPSsettable.Position = UDim2.new(0.068965517, 0, 0.246994525, 0)
+FPSsettable.Size = UDim2.new(0, 125, 0, 31)
+FPSsettable.Font = Enum.Font.Unknown
+FPSsettable.Text = "Custom FPS set"
+FPSsettable.TextColor3 = Color3.fromRGB(208, 208, 208)
+FPSsettable.TextSize = 14.000
+FPSsettable.TextStrokeTransparency = 0.000
+
+InjectFirst.Name = "InjectFirst"
+InjectFirst.Parent = MainFrame
+InjectFirst.BackgroundColor3 = Color3.fromRGB(128, 130, 88)
+InjectFirst.BorderColor3 = Color3.fromRGB(0, 0, 0)
+InjectFirst.BorderSizePixel = 0
+InjectFirst.Position = UDim2.new(0.068965517, 0, 0.692896128, 0)
+InjectFirst.Size = UDim2.new(0, 125, 0, 30)
+InjectFirst.Font = Enum.Font.Unknown
+InjectFirst.Text = "Inject!"
+InjectFirst.TextColor3 = Color3.fromRGB(230, 230, 230)
+InjectFirst.TextSize = 14.000
+InjectFirst.TextStrokeTransparency = 0.000
+
+-- Scripts:
+
+local function UBDTS_fake_script() -- InjectFirst.LocalScript 
+	local script = Instance.new('LocalScript', InjectFirst)
+
+	script.Parent.MouseButton1Click:Connect(function()
+		--TextBox/Numbervalue
+		local Fpsvalue = script.Parent.Parent.Fpsvalue.Text
+		--main function
+		while true do
+			
+			local args = {
+			[1] = Fpsvalue
+		}
+	
+		game:GetService("ReplicatedStorage"):WaitForChild("FPSUpdateEvent"):FireServer(unpack(args))
+			wait(0.01)
+		end
+		
+	
+	end)
+end
+coroutine.wrap(UBDTS_fake_script)()
+local function KLWDD_fake_script() -- DraggingFrame.DragScript 
+	local script = Instance.new('LocalScript', DraggingFrame)
+
+	script.Parent.Draggable = true
+	script.Parent.Active = true
+	
+end
+coroutine.wrap(KLWDD_fake_script)()
